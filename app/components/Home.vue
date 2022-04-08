@@ -3,7 +3,9 @@
     <ActionBar :title="title">
       <NavigationButton text="Back" ></NavigationButton>
     </ActionBar>
-    <RadCalendar></RadCalendar>
+    <RadCalendar
+        locale="ru-RU"
+    ></RadCalendar>
   </Page>
 </template>
 
