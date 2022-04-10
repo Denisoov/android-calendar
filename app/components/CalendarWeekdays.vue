@@ -5,8 +5,8 @@
       :key="index"
       :text="weekday"
       class="calendar-panel__mounth" 
-      width="30" 
-      height="30"
+      width="44" 
+      height="44"
     />
   </FlexboxLayout>
 </template>
@@ -23,12 +23,17 @@ export default {
 
 <style lang="scss">
   .calendar-weekdays {
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background-color: rgb(236, 236, 236);
     margin-bottom: 20px;
 
     Label {
+      text-align: center;
+      padding-top: 36px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+      border-radius: 50%;
       color: brown;
     }
   }

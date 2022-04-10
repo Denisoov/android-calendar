@@ -6,9 +6,9 @@
         @prevMonth="prevMonth" 
         :monthName="monthName" 
       />
-      <!-- <calendar-weekdays :weekdays="weekdays" /> -->
+      <calendar-weekdays :weekdays="weekdays" />
       <calendar-days 
-        :days="monthDays"
+        :days="test"
         :currentDay="currentDay" 
         :nowMonth="nowMonth"
       />
@@ -19,13 +19,13 @@
 <script>
 
   import CalendarPanel from "@/components/CalendarPanel.vue";
-  // import CalendarWeekdays from "@/components/CalendarWeekdays.vue"
+  import CalendarWeekdays from "@/components/CalendarWeekdays.vue"
   import CalendarDays from "@/components/CalendarDays.vue";
 
   export default {
     components: {
       CalendarPanel,
-      // CalendarWeekdays,
+      CalendarWeekdays,
       CalendarDays
     },
     data: () => ({
@@ -37,8 +37,13 @@
 
       nowMonth: new Date().getMonth(),
       nowYear: new Date().getFullYear(),
-      test: null
+      test: [],
+      beforeDaysInCurrentMont: new Date(),
+      beforeMontDays: new Date()
     }),
+    created() {
+      this.calcDays()
+    },
     computed: {
       monthName() {
         return this.monthes[this.nowMonth]
@@ -54,13 +59,33 @@
       }
     },
     methods: {
+      calcDays() {
+        this.test = []
+
+        for (let i = 1; i <= 30; i++) {
+          this.test.push(i)
+        }
+
+        this.beforeDaysInCurrentMont =  new Date(this.nowYear, this.nowMonth, 1).getDay()
+        this.beforeMontDays =  new Date(this.nowYear, this.nowMonth, 0).getDate()
+
+        for (let i = this.beforeDaysInCurrentMont; i > 1; i--) {
+          this.test.unshift(this.beforeMontDays)
+          this.beforeMontDays--
+        }
+        
+      },
       prevMonth() {
+        //обновляем месяц на предыдуший
         this.currentDate.setMonth(this.currentDate.getMonth() -1)
         this.nowMonth = this.currentDate.getMonth()
+        this.calcDays()
       },
       nextMont() {
+        //обновляем месяц на следующий
         this.currentDate.setMonth(this.currentDate.getMonth() + 1)
         this.nowMonth = this.currentDate.getMonth()
+        this.calcDays()
       }
     },
   };
@@ -69,6 +94,7 @@
 <style lang="scss">
   .calendar-wrapper {
     width: 90%;
+    height: 80%;
     box-shadow: 0px 6px 37px rgba(109, 67, 90, 0.1);
     border-radius: 15px;
     margin-top: 50px;
