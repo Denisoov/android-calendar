@@ -5,6 +5,9 @@
       :key="index"
       :text="day"
       class="calendar-panel__mounth"
+      :style="{
+        'background-color': checkCurrentDay(index)
+      }"
       width="44"
       height="44"
     />
@@ -17,7 +20,20 @@ export default {
     days: {
       type: Array,
     },
+    currentDay: {
+      type: Object
+    },
+    nowMonth: {
+      type: Number
+    },
   },
+  methods: {
+    checkCurrentDay(index) {
+      return index + 1 === this.currentDay.day && this.nowMonth === this.currentDay.month 
+        ? '#93dbf1' 
+        : '#f3f3f3'
+    }
+  }
 };
 </script>
 
@@ -31,7 +47,7 @@ export default {
   Label {
     background-color: #f3f3f3;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 36px;
     margin-left: 10px;
     margin-bottom: 15px;
     border-radius: 50%;

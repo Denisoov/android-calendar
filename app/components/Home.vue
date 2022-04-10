@@ -7,7 +7,11 @@
         :monthName="monthName" 
       />
       <!-- <calendar-weekdays :weekdays="weekdays" /> -->
-      <calendar-days :days="monthDays" />
+      <calendar-days 
+        :days="monthDays"
+        :currentDay="currentDay" 
+        :nowMonth="nowMonth"
+      />
     </StackLayout>
   </Page>
 </template>
@@ -38,6 +42,12 @@
     computed: {
       monthName() {
         return this.monthes[this.nowMonth]
+      },
+      currentDay() {
+        return {
+          day: this.currentDate.getDate(),
+          month: this.currentDate.getMonth()
+        }
       },
       monthDays() {
         return new Date(this.nowYear, this.nowMonth + 1, 0).getDate()
