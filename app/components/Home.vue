@@ -1,9 +1,13 @@
 <template>
   <Page>
     <StackLayout class="calendar-wrapper">
-      <calendar-panel :monthName="monthName" />
-      <calendar-weekdays :weekdays="weekdays" />
-      <Label text="third" height="70" backgroundColor="#1c6b48"/>
+      <calendar-panel 
+        @nextMont="nextMont"
+        @prevMonth="prevMonth" 
+        :monthName="monthName" 
+      />
+      <!-- <calendar-weekdays :weekdays="weekdays" /> -->
+      <calendar-days :days="monthDays" />
     </StackLayout>
   </Page>
 </template>
@@ -11,12 +15,14 @@
 <script>
 
   import CalendarPanel from "@/components/CalendarPanel.vue";
-  import CalendarWeekdays from "@/components/CalendarWeekdays.vue"
+  // import CalendarWeekdays from "@/components/CalendarWeekdays.vue"
+  import CalendarDays from "@/components/CalendarDays.vue";
 
   export default {
     components: {
       CalendarPanel,
-      CalendarWeekdays
+      // CalendarWeekdays,
+      CalendarDays
     },
     data: () => ({
       nowDate: new Date(),
@@ -27,6 +33,7 @@
 
       nowMonth: new Date().getMonth(),
       nowYear: new Date().getFullYear(),
+      test: null
     }),
     computed: {
       monthName() {
@@ -39,6 +46,11 @@
     methods: {
       prevMonth() {
         this.currentDate.setMonth(this.currentDate.getMonth() -1)
+        this.nowMonth = this.currentDate.getMonth()
+      },
+      nextMont() {
+        this.currentDate.setMonth(this.currentDate.getMonth() + 1)
+        this.nowMonth = this.currentDate.getMonth()
       }
     },
   };
@@ -46,17 +58,10 @@
 
 <style lang="scss">
   .calendar-wrapper {
-    .calendar-panel {
-      align-items: center;
-      justify-content: center;
-    }
-    .calendar-panel__prev, .calendar-panel__next {
-      border-radius: 50%;
-      font-weight: 600;
-    }
-    .calendar-panel__mounth {
-      padding-top: 18px;
-      text-align: center;
-    }
+    width: 90%;
+    box-shadow: 0px 6px 37px rgba(109, 67, 90, 0.1);
+    border-radius: 15px;
+    margin-top: 50px;
+    padding: 15px;
   }
 </style>

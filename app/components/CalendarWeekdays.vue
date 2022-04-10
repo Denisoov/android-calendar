@@ -26,6 +26,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     background-color: rgb(236, 236, 236);
+    margin-bottom: 20px;
 
     Label {
       color: brown;
