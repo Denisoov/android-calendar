@@ -1,26 +1,34 @@
 <template>
-  <FlexboxLayout height="50" class="calendar-panel">
-    <Button
-      @tap="prevMonth"
-      text="<"
-      class="calendar-panel__prev"
-      width="30"
-      height="30"
-    />
+  <StackLayout>
     <Label
-      class="calendar-panel__mounth"
-      :text="monthName"
-      width="120"
-      height="30"
+        class="calendar-panel__mounth"
+        :text="nowYear"
+        width="120"
+        height="30"
     />
-    <Button 
-      @tap="nextMont"
-      text=">" 
-      class="calendar-panel__next" 
-      width="30" 
-      height="30" 
-    />
-  </FlexboxLayout>
+    <FlexboxLayout height="50" class="calendar-panel">
+      <Button
+        @tap="prevMonth"
+        text="<"
+        class="calendar-panel__prev"
+        width="30"
+        height="30"
+      />
+      <Label
+        class="calendar-panel__mounth"
+        :text="monthName"
+        width="120"
+        height="30"
+      />
+      <Button 
+        @tap="nextMont"
+        text=">" 
+        class="calendar-panel__next" 
+        width="30" 
+        height="30" 
+      />
+    </FlexboxLayout>
+  </StackLayout>
 </template>
 
 <script>
@@ -29,6 +37,9 @@ export default {
     monthName: {
       type: String,
     },
+    nowYear: {
+      type: Number
+    }
   },
   methods: {
     prevMonth() {

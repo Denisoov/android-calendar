@@ -6,7 +6,7 @@
       :text="day"
       class="calendar-panel__mounth"
       :style="{
-        'background-color': checkCurrentDay(index)
+        'background-color': checkCurrentDay(day)
       }"
       width="44"
       height="44"
@@ -26,10 +26,13 @@ export default {
     nowMonth: {
       type: Number
     },
+    nowYear: {
+      type: Number
+    }
   },
   methods: {
-    checkCurrentDay(index) {
-      return index + 1 === this.currentDay.day && this.nowMonth === this.currentDay.month 
+    checkCurrentDay(day) {
+      return day  === this.currentDay.day && this.nowMonth === this.currentDay.month && this.currentDay.year === this.nowYear
         ? '#93dbf1' 
         : '#f3f3f3'
     }

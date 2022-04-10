@@ -5,12 +5,14 @@
         @nextMont="nextMont"
         @prevMonth="prevMonth" 
         :monthName="monthName" 
+        :nowYear="nowYear"
       />
       <calendar-weekdays :weekdays="weekdays" />
       <calendar-days 
         :days="days"
         :currentDay="currentDay" 
         :nowMonth="nowMonth"
+        :nowYear="nowYear"
       />
     </StackLayout>
   </Page>
@@ -51,7 +53,8 @@
       currentDay() {
         return {
           day: this.currentDate.getDate(),
-          month: this.currentDate.getMonth()
+          month: this.currentDate.getMonth(),
+          year: this.currentDate.getFullYear()
         }
       },
       monthDays() {
@@ -66,8 +69,8 @@
           this.days.push(i)
         }
 
-        this.beforeDaysInCurrentMont =  new Date(this.nowYear, this.nowMonth, 0).getDay()
-        this.beforeMontDays =  new Date(this.nowYear, this.nowMonth, 0).getDate()
+        this.beforeDaysInCurrentMont = new Date(this.nowYear, this.nowMonth, 0).getDay()
+        this.beforeMontDays = new Date(this.nowYear, this.nowMonth, 0).getDate()
 
         for (let i = this.beforeDaysInCurrentMont; i >= 1; i--) {
           this.days.unshift(this.beforeMontDays)
@@ -75,14 +78,16 @@
         }
         
       },
-      prevMonth() {
         //обновляем месяц на предыдуший
+      prevMonth() {
+        if (this.nowMonth === 0) this.nowYear--
         this.currentDate.setMonth(this.currentDate.getMonth() -1)
         this.nowMonth = this.currentDate.getMonth()
         this.calcDays()
       },
-      nextMont() {
         //обновляем месяц на следующий
+      nextMont() {
+        if (this.nowMonth === 11) this.nowYear++
         this.currentDate.setMonth(this.currentDate.getMonth() + 1)
         this.nowMonth = this.currentDate.getMonth()
         this.calcDays()
