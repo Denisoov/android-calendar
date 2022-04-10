@@ -24,13 +24,12 @@ export default {
 <style lang="scss">
   .calendar-weekdays {
     justify-content: flex-start;
-    align-items: center;
-    background-color: rgb(236, 236, 236);
+    background-color: #e2e1e1;
     margin-bottom: 20px;
 
     Label {
       text-align: center;
-      padding-top: 36px;
+      padding-top: 46px;
       margin-left: 10px;
       margin-bottom: 15px;
       border-radius: 50%;

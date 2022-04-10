@@ -8,7 +8,7 @@
       />
       <calendar-weekdays :weekdays="weekdays" />
       <calendar-days 
-        :days="test"
+        :days="days"
         :currentDay="currentDay" 
         :nowMonth="nowMonth"
       />
@@ -37,7 +37,7 @@
 
       nowMonth: new Date().getMonth(),
       nowYear: new Date().getFullYear(),
-      test: [],
+      days: [],
       beforeDaysInCurrentMont: new Date(),
       beforeMontDays: new Date()
     }),
@@ -60,17 +60,17 @@
     },
     methods: {
       calcDays() {
-        this.test = []
+        this.days = []
 
         for (let i = 1; i <= 30; i++) {
-          this.test.push(i)
+          this.days.push(i)
         }
 
         this.beforeDaysInCurrentMont =  new Date(this.nowYear, this.nowMonth, 0).getDay()
         this.beforeMontDays =  new Date(this.nowYear, this.nowMonth, 0).getDate()
 
         for (let i = this.beforeDaysInCurrentMont; i >= 1; i--) {
-          this.test.unshift(this.beforeMontDays)
+          this.days.unshift(this.beforeMontDays)
           this.beforeMontDays--
         }
         
