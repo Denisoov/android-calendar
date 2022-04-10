@@ -20,18 +20,27 @@
     },
     data: () => ({
       nowDate: new Date(),
+      currentDate: new Date(),
 
       monthes: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
       weekdays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
 
       nowMonth: new Date().getMonth(),
-      // monthDays: new Date(year, month + 1, 0).getDate(),
+      nowYear: new Date().getFullYear(),
     }),
     computed: {
       monthName() {
         return this.monthes[this.nowMonth]
+      },
+      monthDays() {
+        return new Date(this.nowYear, this.nowMonth + 1, 0).getDate()
       }
-    }
+    },
+    methods: {
+      prevMonth() {
+        this.currentDate.setMonth(this.currentDate.getMonth() -1)
+      }
+    },
   };
 </script>
 
