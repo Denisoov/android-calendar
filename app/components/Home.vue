@@ -66,10 +66,10 @@
           this.test.push(i)
         }
 
-        this.beforeDaysInCurrentMont =  new Date(this.nowYear, this.nowMonth, 1).getDay()
+        this.beforeDaysInCurrentMont =  new Date(this.nowYear, this.nowMonth, 0).getDay()
         this.beforeMontDays =  new Date(this.nowYear, this.nowMonth, 0).getDate()
 
-        for (let i = this.beforeDaysInCurrentMont; i > 1; i--) {
+        for (let i = this.beforeDaysInCurrentMont; i >= 1; i--) {
           this.test.unshift(this.beforeMontDays)
           this.beforeMontDays--
         }
