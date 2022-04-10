@@ -1,12 +1,12 @@
 <template>
   <StackLayout>
     <Label
-        class="calendar-panel__mounth"
-        :text="nowYear"
+        class="calendar-panel__year"
+        :text="yearName"
         width="120"
         height="30"
     />
-    <FlexboxLayout height="50" class="calendar-panel">
+    <FlexboxLayout height="50" width="240" class="calendar-panel">
       <Button
         @tap="prevMonth"
         text="<"
@@ -41,6 +41,11 @@ export default {
       type: Number
     }
   },
+  computed: {
+    yearName() {
+      return `${this.nowYear}г.`
+    }
+  },
   methods: {
     prevMonth() {
       this.$emit('prevMonth');
@@ -63,6 +68,11 @@ export default {
 .calendar-panel__next {
   border-radius: 50%;
   font-weight: 600;
+}
+.calendar-panel__year {
+  text-align: left;
+  font-size: 25px;
+  margin-bottom: 20px;
 }
 
 .calendar-panel__mounth {

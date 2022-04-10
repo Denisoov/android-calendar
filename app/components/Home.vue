@@ -40,8 +40,6 @@
       nowMonth: new Date().getMonth(),
       nowYear: new Date().getFullYear(),
       days: [],
-      beforeDaysInCurrentMont: new Date(),
-      beforeMontDays: new Date()
     }),
     created() {
       this.calcDays()
@@ -69,27 +67,31 @@
           this.days.push(i)
         }
 
-        this.beforeDaysInCurrentMont = new Date(this.nowYear, this.nowMonth, 0).getDay()
-        this.beforeMontDays = new Date(this.nowYear, this.nowMonth, 0).getDate()
+        let beforeDaysInCurrentMont = new Date(this.nowYear, this.nowMonth, 0).getDay()
+        let beforeMontDays = new Date(this.nowYear, this.nowMonth, 0).getDate()
 
-        for (let i = this.beforeDaysInCurrentMont; i >= 1; i--) {
-          this.days.unshift(this.beforeMontDays)
-          this.beforeMontDays--
+        for (let i = beforeDaysInCurrentMont; i >= 1; i--) {
+          this.days.unshift(beforeMontDays)
+          beforeMontDays--
         }
         
       },
         //обновляем месяц на предыдуший
       prevMonth() {
         if (this.nowMonth === 0) this.nowYear--
+
         this.currentDate.setMonth(this.currentDate.getMonth() -1)
         this.nowMonth = this.currentDate.getMonth()
+
         this.calcDays()
       },
         //обновляем месяц на следующий
       nextMont() {
         if (this.nowMonth === 11) this.nowYear++
+
         this.currentDate.setMonth(this.currentDate.getMonth() + 1)
         this.nowMonth = this.currentDate.getMonth()
+
         this.calcDays()
       }
     },

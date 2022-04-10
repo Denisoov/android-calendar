@@ -1,5 +1,5 @@
 <template>
-  <FlexboxLayout height="auto" class="calendar-days">
+  <FlexboxLayout height="300" class="calendar-days">
     <Label
       v-for="(day, index) in days"
       :key="index"
@@ -33,7 +33,7 @@ export default {
   methods: {
     checkCurrentDay(day) {
       return day  === this.currentDay.day && this.nowMonth === this.currentDay.month && this.currentDay.year === this.nowYear
-        ? '#93dbf1' 
+        ? '#72bafd' 
         : '#f3f3f3'
     }
   }

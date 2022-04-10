@@ -25,7 +25,8 @@ export default {
   .calendar-weekdays {
     justify-content: flex-start;
     background-color: #e2e1e1;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    border-radius: 25px;
 
     Label {
       text-align: center;
