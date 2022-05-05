@@ -1,11 +1,20 @@
 <template>
   <StackLayout>
-    <Label
-        class="calendar-panel__year"
-        :text="yearName"
-        width="120"
-        height="30"
-    />
+    <FlexboxLayout height="50" width="240" class="calendar-panel">
+      <Label
+          class="calendar-panel__year"
+          :text="yearName"
+          width="120"
+          height="30"
+      />
+      <Button 
+          @tap="nextYear"
+          text=">" 
+          class="calendar-panel__next" 
+          width="30" 
+          height="30" 
+        />
+    </FlexboxLayout>
     <FlexboxLayout height="50" width="240" class="calendar-panel">
       <Button
         @tap="prevMonth"
@@ -52,6 +61,9 @@ export default {
     },
     nextMont() {
       this.$emit('nextMont')
+    },
+    nextYear() {
+      this.$emit('nextYear')
     }
   },
 };

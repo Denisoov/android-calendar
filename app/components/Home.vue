@@ -6,6 +6,7 @@
         @prevMonth="prevMonth" 
         :monthName="monthName" 
         :nowYear="nowYear"
+        @nextYear="nextYear"
       />
       <calendar-weekdays :weekdays="weekdays" />
       <calendar-days 
@@ -91,6 +92,13 @@
 
         this.currentDate.setMonth(this.currentDate.getMonth() + 1)
         this.nowMonth = this.currentDate.getMonth()
+
+        this.calcDays()
+      },
+
+        //обновляем год на следующий
+      nextYear() {
+        this.nowYear++
 
         this.calcDays()
       }
